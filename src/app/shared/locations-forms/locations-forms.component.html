@@ -1,0 +1,11 @@
+<h2>New Location</h2>
+<form [formGroup]="locationsForm">
+    <div>
+        <ion-input label="Name:" formControlName="name"></ion-input>
+        <ion-input label="Description:" formControlName="description"></ion-input>
+        <ion-input label="Lat:" formControlName="lat"></ion-input>
+        <ion-input label="Lon:" formControlName="lon"></ion-input>
+        <ion-checkbox labelPlacement="start" formControlName="visible">Visible:</ion-checkbox>
+        <ion-button expand="block" (click)=outputLocation()>{{action}}</ion-button>
+    </div>
+</form>

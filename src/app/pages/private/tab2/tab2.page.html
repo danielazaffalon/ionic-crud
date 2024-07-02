@@ -1,0 +1,52 @@
+<app-header [tabTile]="title"></app-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+
+    @for (location of locations; track $index){
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{location.name}}</ion-card-title>
+          <ion-card-subtitle>Visible: {{location.visible?"yes":"No"}}</ion-card-subtitle>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Description: {{location.description}}<br>
+          Latitud: {{location.lat}}<br>
+          Longitud: {{location.lon}}<br>
+        </ion-card-content>
+      </ion-card>
+    }
+
+  </ion-list>
+
+  <!-- https://ionicframework.com/docs/api/fab -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button id="open-modal">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- https://ionicframework.com/docs/api/modal -->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Add Location</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+
+          <app-locations-forms [action]="'Add'" (outLocation)="addLocation($event)"></app-locations-forms>
+        
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>
