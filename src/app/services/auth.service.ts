@@ -20,6 +20,8 @@ export class AuthService {
   async login({ email, password }: {email: string; password: string}) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
+      console.log(email);
+      console.log(password);
       return user;
     } catch (e) {
       return null;
